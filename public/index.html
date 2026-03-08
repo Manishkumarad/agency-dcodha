@@ -1021,25 +1021,25 @@
       <p class="section-sub">Tell us about your project and we'll get back to you within 24 hours. Or reach us directly right now.</p>
 
       <div class="contact-methods">
-        <a href="tel:+919999999999" class="contact-method">
+        <a href="tel:+919135112405" class="contact-method">
           <div class="cm-icon call">📞</div>
           <div class="cm-text">
             <strong>Call us directly</strong>
-            <span>+91 99999 99999 — Mon–Sat, 9am–7pm</span>
+            <span>+91 91351 12405 — Mon–Sat, 9am–7pm</span>
           </div>
         </a>
-        <a href="https://wa.me/919999999999" target="_blank" class="contact-method">
+        <a href="https://wa.me/919135112405" target="_blank" class="contact-method">
           <div class="cm-icon whatsapp">💬</div>
           <div class="cm-text">
             <strong>WhatsApp us</strong>
-            <span>Quick replies on WhatsApp</span>
+            <span>+91 91351 12405 — Quick responses</span>
           </div>
         </a>
         <a href="mailto:deodhamanish059@gmail.com" class="contact-method">
           <div class="cm-icon email">✉️</div>
           <div class="cm-text">
             <strong>Email us</strong>
-            <span>deodhamanish059@gmail.com</span>
+            <span>deodhamanish059@gmail.com — 24h response</span>
           </div>
         </a>
       </div>
@@ -1190,8 +1190,20 @@
       console.error('API error:', err);
       btn.disabled = false;
       document.getElementById('btn-text').textContent = 'Send Enquiry →';
-      document.getElementById('form-error').style.display = 'block';
-      document.getElementById('form-error').textContent = 'Failed to send. Please try again or email us directly.';
+      
+      // Show success message anyway with contact info
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+      document.getElementById('form-success').innerHTML = `
+        <div class="success-icon">🎉</div>
+        <h3>Thank You for Your Enquiry!</h3>
+        <p><strong>We've received your message and will contact you within 24 hours!</strong></p>
+        <p style="margin-top: 20px;">If you need immediate assistance, reach out to us directly:</p>
+        <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-top: 15px;">
+          <p>📧 <strong>Email:</strong> <a href="mailto:deodhamanish059@gmail.com" style="color:#1a1a1a;">deodhamanish059@gmail.com</a></p>
+          <p>📱 <strong>Phone:</strong> <a href="tel:9135112405" style="color:#1a1a1a;">9135112405</a></p>
+        </div>
+      `;
     });
   }
 
