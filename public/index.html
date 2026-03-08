@@ -1339,50 +1339,53 @@
   });
 
   // Newsletter form handler
-  document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const email = document.getElementById('newsletter-email').value.trim();
-    const btn = document.getElementById('newsletter-btn');
-    const msg = document.getElementById('newsletter-message');
-    
-    if (!email || !email.includes('@')) {
-      msg.textContent = 'Please enter a valid email address.';
-      msg.style.color = '#ff6b6b';
-      return;
-    }
-    
-    btn.disabled = true;
-    btn.textContent = 'Subscribing...';
-    msg.textContent = '';
-    
-    fetch('/api/subscribe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email: email })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        msg.textContent = '🎉 Successfully subscribed! Check your email for confirmation.';
-        msg.style.color = '#22c55e';
-        document.getElementById('newsletter-email').value = '';
-      } else {
-        throw new Error(data.message || 'Failed to subscribe');
+  const newsletterForm = document.getElementById('newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('newsletter-email').value.trim();
+      const btn = document.getElementById('newsletter-btn');
+      const msg = document.getElementById('newsletter-message');
+      
+      if (!email || !email.includes('@')) {
+        msg.textContent = 'Please enter a valid email address.';
+        msg.style.color = '#ff6b6b';
+        return;
       }
-    })
-    .catch((err) => {
-      console.error('Newsletter error:', err);
-      msg.textContent = 'Failed to subscribe. Please try again.';
-      msg.style.color = '#ff6b6b';
-    })
-    .finally(() => {
-      btn.disabled = false;
-      btn.textContent = 'Subscribe';
+      
+      btn.disabled = true;
+      btn.textContent = 'Subscribing...';
+      msg.textContent = '';
+      
+      fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          msg.textContent = '🎉 Successfully subscribed! Check your email for confirmation.';
+          msg.style.color = '#22c55e';
+          document.getElementById('newsletter-email').value = '';
+        } else {
+          throw new Error(data.message || 'Failed to subscribe');
+        }
+      })
+      .catch((err) => {
+        console.error('Newsletter error:', err);
+        msg.textContent = 'Failed to subscribe. Please try again.';
+        msg.style.color = '#ff6b6b';
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.textContent = 'Subscribe';
+      });
     });
-  });
+  }
 </script>
 
 <!-- FOOTER -->
