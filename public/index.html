@@ -1018,6 +1018,62 @@
 </head>
 <body>
 
+<!-- Chatbot Widget (moved to top of body for better positioning) -->
+<div class="chat-widget">
+  <div class="chat-bubble" id="chatBubble" onclick="toggleChat()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <div class="chat-notification" id="chatNotification" style="display: none;">1</div>
+  </div>
+  
+  <div class="chat-popup" id="chatPopup">
+    <div class="chat-popup-header">
+      <div class="chat-popup-avatar">AI</div>
+      <div class="chat-popup-info">
+        <h3>NexusAI Assistant</h3>
+        <p>Always here to help</p>
+      </div>
+      <div class="chat-popup-status"></div>
+      <button class="chat-popup-close" onclick="toggleChat()">×</button>
+    </div>
+    
+    <div class="chat-popup-messages" id="chatMessages">
+      <div class="chat-popup-message bot">
+        <div class="chat-popup-message-avatar">AI</div>
+        <div class="chat-popup-message-content">
+          👋 Hello and welcome to NexusAI! I'm your personal AI assistant, here to help you explore our services and answer any questions you might have. How can I assist you today?
+        </div>
+      </div>
+    </div>
+    
+    <div class="chat-popup-typing" id="chatTyping">
+      <div class="chat-popup-typing-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    
+    <div class="chat-popup-input">
+      <div class="chat-popup-quick-actions">
+        <div class="chat-popup-quick-action" onclick="sendQuickMessage('Tell me about your services')">Services</div>
+        <div class="chat-popup-quick-action" onclick="sendQuickMessage('I want to start a project')">Start Project</div>
+        <div class="chat-popup-quick-action" onclick="sendQuickMessage('Pricing information')">Pricing</div>
+        <div class="chat-popup-quick-action" onclick="sendQuickMessage('Contact support')">Contact</div>
+      </div>
+      <div class="chat-popup-input-container">
+        <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
+        <button class="chat-popup-send-btn" onclick="sendChatMessage()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav>
   <a href="#" class="logo"><span class="logo-dot"></span>Nexus<span style="color:#888;font-weight:400">AI</span></a>
@@ -1992,62 +2048,6 @@
     }, 5000);
   });
 </script>
-
-<!-- Chatbot Widget -->
-<div class="chat-widget">
-  <div class="chat-bubble" id="chatBubble" onclick="toggleChat()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
-    <div class="chat-notification" id="chatNotification" style="display: none;">1</div>
-  </div>
-  
-  <div class="chat-popup" id="chatPopup">
-    <div class="chat-popup-header">
-      <div class="chat-popup-avatar">AI</div>
-      <div class="chat-popup-info">
-        <h3>NexusAI Assistant</h3>
-        <p>Always here to help</p>
-      </div>
-      <div class="chat-popup-status"></div>
-      <button class="chat-popup-close" onclick="toggleChat()">×</button>
-    </div>
-    
-    <div class="chat-popup-messages" id="chatMessages">
-      <div class="chat-popup-message bot">
-        <div class="chat-popup-message-avatar">AI</div>
-        <div class="chat-popup-message-content">
-          👋 Hello and welcome to NexusAI! I'm your personal AI assistant, here to help you explore our services and answer any questions you might have. How can I assist you today?
-        </div>
-      </div>
-    </div>
-    
-    <div class="chat-popup-typing" id="chatTyping">
-      <div class="chat-popup-typing-dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-    
-    <div class="chat-popup-input">
-      <div class="chat-popup-quick-actions">
-        <div class="chat-popup-quick-action" onclick="sendQuickMessage('Tell me about your services')">Services</div>
-        <div class="chat-popup-quick-action" onclick="sendQuickMessage('I want to start a project')">Start Project</div>
-        <div class="chat-popup-quick-action" onclick="sendQuickMessage('Pricing information')">Pricing</div>
-        <div class="chat-popup-quick-action" onclick="sendQuickMessage('Contact support')">Contact</div>
-      </div>
-      <div class="chat-popup-input-container">
-        <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
-        <button class="chat-popup-send-btn" onclick="sendChatMessage()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
